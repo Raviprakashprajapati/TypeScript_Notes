@@ -17,10 +17,15 @@ Compiling File: tsc <filename>.ts
 Install TS Porject:
 
 tsc --init
+
 npm init -y
+
 create two FOlder dist and src(index.ts)
+
 create index.html
+
 edit out to ./dist
+
 tsc -w it autmatic compile and create index.js in dist
 
 DATATYPES -----------------------------
