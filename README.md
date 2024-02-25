@@ -5,6 +5,7 @@ INTRODUCTION:
 Typescript is a Superset of Javascript . It was developed by Microsoft . It just a development tool by using the chances of producing the error is much more less as compared to JS. After writting TS code it will compiled into javasscirpt because Browser can only understand html,css js . It just offers type safety to the code
 
 Online TS PlayGround : https://www.typescriptlang.org/play?#code/Q
+
 CheatSheet: https://github.com/rmolinamir/typescript-cheatsheet?tab=readme-ov-file#tuples
 
 
