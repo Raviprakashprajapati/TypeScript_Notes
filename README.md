@@ -1,21 +1,26 @@
-# TypeScript_Notes
-
-
+#Typescript_Notes
 
 INTRODUCTION:
 
 Typescript is a Superset of Javascript . It was developed by Microsoft . It just a development tool by using the chances of producing the error is much more less as compared to JS. After writting TS code it will compiled into javasscirpt because Browser can only understand html,css js . It just offers type safety to the code
 
 Online TS PlayGround : https://www.typescriptlang.org/play?#code/Q
+CheatSheet: https://github.com/rmolinamir/typescript-cheatsheet?tab=readme-ov-file#tuples
 
 
 Installation and Usage:
 
 Global Installation: npm install -g typescript
-Compiling File: tsc <filename>.ts (creates a corresponding .js file)
-Syntax:
+Compiling File: tsc <filename>.ts 
 
+Install TS Porject:
 
+tsc --init
+npm init -y
+create two FOlder dist and src(index.ts)
+create index.html
+edit out to ./dist
+tsc -w it autmatic compile and create index.js in dist
 
 DATATYPES -----------------------------
 
@@ -60,7 +65,7 @@ function createCourse():{name: string, price: number}{
 
 Alias -----
 
-type is used like a tmeplate of creating Object
+type is used like a tmeplate of creating our own Object structure before actual creating actual object 
 
 type User = {
     name: string;
@@ -160,3 +165,133 @@ function getDbId(id: string | number ){
 let weeks: "monday" | "sunday"
 weeks = "monday"
 weeks = "fbgfgf" //error
+
+
+
+
+TUPLES -------
+
+const user: [string, number, boolean] = ["ravi",123,true,]
+
+
+ENUM -----
+
+
+const enum SeatChoice {
+    MIDDLE=45,
+    WINDOW=899
+}
+by default It has 0
+
+const seat = SeatChoice.WINDOW
+
+
+
+INTERFACE -------
+
+ Interfaces define the shape of an object, specifying the properties it must have and their expected types.
+
+ interface User {
+    readonly dbId: number,
+    email: string,
+    userId: number,
+    // startTrail: () => string
+    startTrail(): string,
+    getCoupon(couponName: string): number
+}
+
+
+const ravi: User = {
+    email:"ravi@gmail.com",
+    userId:123,
+    dbId:321135,
+    startTrail: () =>{ return "trail started"},
+    getCoupon: (name:"ravi")=>{ return 10}
+}
+
+
+we can laos reopen exist interface ?
+
+interface User {
+    githubToken: string
+}
+
+
+interface Admin extends User {
+    role: "admin" | "learner"
+}
+
+
+
+TYPE v/s INTERFACE
+
+
+type cannot be re-opened to add new properties BUT Interface can do it
+
+type cannot be extends BUT interface can do it
+
+
+ABSTRACT
+
+ abstract class TakePhoto {
+    
+    constructor(
+        public camera: string,
+        public filter: string
+    ){}
+
+    abstract getSepia(): void
+     getReelTime(): number {
+        return 8
+    }
+}
+
+
+
+
+
+
+GENERICS 
+
+// function identity4<T>(value: T): T {
+//     return value
+// }
+
+
+function getSearchProduct<T>(products: T[]): T {
+    
+    return products[3]
+}
+
+const getMoreSearchProducts = <T>(value:T[]): T =>{
+        return value[3]
+}
+
+
+//class generics
+
+class Animal<T> {
+    public habits: T[] = []
+
+    addHabits(habit: T){
+        this.habits.push(habit)
+    }
+}
+
+
+
+
+
+IN is used to verify that this property exist in interface or not
+
+
+instanceof
+
+function logValue(x: Date | string){
+    if(x instanceof Date){
+        console.log(x.toUTCString())
+    }
+}
+
+OPTIONAL OBJECT -?-
+const obj: {name: string, age?: number} = {name:"ravi"}
