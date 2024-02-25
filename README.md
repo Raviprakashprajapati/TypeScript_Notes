@@ -5,7 +5,6 @@ INTRODUCTION:
 Typescript is a Superset of Javascript . It was developed by Microsoft . It just a development tool by using the chances of producing the error is much more less as compared to JS. After writting TS code it will compiled into javasscirpt because Browser can only understand html,css js . It just offers type safety to the code
 
 Online TS PlayGround : https://www.typescriptlang.org/play?#code/Q
-
 CheatSheet: https://github.com/rmolinamir/typescript-cheatsheet?tab=readme-ov-file#tuples
 
 
@@ -232,7 +231,12 @@ type cannot be re-opened to add new properties BUT Interface can do it
 type cannot be extends BUT interface can do it
 
 
-ABSTRACT
+ABSTRACT ------
+
+Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly.
+The abstract keyword is used to define abstract classes as well as abstract methods within an abstract class.
+
+Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented in derived classes.
 
  abstract class TakePhoto {
     
@@ -242,8 +246,21 @@ ABSTRACT
     ){}
 
     abstract getSepia(): void
-     getReelTime(): number {
+    getReelTime(): number {
         return 8
+    }
+}
+
+
+abstract class Project {
+
+    projectName: string = 'Default';
+    buget: number = 0;
+
+    abstract changeName(name: string): void;
+    
+    calcBudget(){
+        return this.buget * 2;
     }
 }
 
@@ -296,3 +313,106 @@ function logValue(x: Date | string){
 
 OPTIONAL OBJECT -?-
 const obj: {name: string, age?: number} = {name:"ravi"}
+
+
+Methods of the Typescript accessor property: 
+
+getter: This method comes when you want to access any property of an object. A getter is also called an accessor.
+setter: This method comes when you want to change any property of an object. A setter is also known as a mutator.
+
+Note for using this we cannot need () like regular funciton thus it mkae it more efficient to get and set members of the class no matter it is private or public like this:
+
+
+
+public get name()  return this._name;
+public set name(name: string) this.name=name;
+
+student.name = "ravi setter"
+console.log(student.name)
+
+
+
+STATIC Properties & Methods ----
+
+Static properties and methods are class members that can be accessed from an outer scope of the class, and without having to instantiate the class either.
+
+class Helpers {
+    static PT: number = 3.14
+    static calCircumference(diameter: number): number {
+        return this.PT * diameter
+    }
+}
+
+
+
+SINGLETON -----------------
+
+a singleton is a class that can only be instantiated once, or in other words, a class that can only have one object, single(ton).
+
+
+
+EXPORT & IMPORTS ====
+
+Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the export forms. Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the import forms.
+
+#export
+
+export const PI = 3.14
+export const calculateCircumfirance = (diameter: number) => diameter*PI
+export interface Phone { brand: name }
+
+const PI = 3.14
+export default PI
+
+#import
+
+TypeScript v^3.0
+├── app.ts
+├── src
+│   ├── circle.ts
+│   ├── rectangle.ts
+
+import {PI,calculateCircumfirance} from "./src/circle.ts"
+
+
+
+TYPE ASSERTION ----
+
+In Typescript, Type assertion is a technique that informs the compiler about the type of a variable. Type assertion is similar to typecasting but it doesn’t reconstruct code.
+
+We can either use <> angular brackets or as keywords to do type assertion.
+
+Ex:
+
+let a: unknown = 4554
+let b: number = a as number
+
+
+Ex:
+ 
+let num: any = 77; 
+  
+// Conversion from any to number 
+let num1 = <Number> num; 
+
+
+
+
+UTILITY TYPE_-----------------
+
+Partial changes all the properties in an object to be optional.
+type User = {name: string, email: string}
+type Admin = Partial<User> 
+
+Required changes all the properties in an object to be required.
+type User = {name: string, email?: string}
+type Admin = Partial<User> 
+
+Readonly is used to create a new type where all properties are readonly, meaning they cannot be modified once assigned a value. 
+const newUser: Readonly<User> = {name:"ra",email:"dss"}
+
+Pick removes all but the specified keys from an object type.
+type User2 = Pick<User,"name" | "email">
+
+Omit is opposite of Pick it select all keys except writtern key
+type User3 = Omit<User,"name">
